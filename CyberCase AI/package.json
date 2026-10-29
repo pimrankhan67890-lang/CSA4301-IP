@@ -1,0 +1,20 @@
+{
+  "name": "cybercase-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CyberCase — Smart Digital Fraud Evidence & Response Platform",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "deploy": "vercel"
+  },
+  "dependencies": {
+    "@google/genai": "^2.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "multer": "^2.0.2"
+  }
+}

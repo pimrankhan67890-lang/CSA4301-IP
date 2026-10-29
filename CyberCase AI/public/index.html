@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8ef" />
+  <meta name="description" content="CyberCase turns scattered digital evidence into a clear incident timeline and report, powered by Gemini." />
+  <title>CyberCase — Evidence Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <canvas id="field-canvas" aria-hidden="true"></canvas>
+
+  <section class="splash" id="splash" aria-label="CyberCase startup sequence">
+    <div class="splash-grid"></div>
+    <div class="splash-orb orb-a"></div><div class="splash-orb orb-b"></div>
+    <div class="splash-top"><span class="mono">CC / EVIDENCE STUDIO</span><span class="mono" id="splash-progress-label">00 — OPENING WORKSPACE</span></div>
+    <div class="splash-center">
+      <div class="brand-mark brand-mark-xl"><svg viewBox="0 0 80 80" fill="none"><path d="M40 5 66 15v21c0 18-11 29-26 39C25 65 14 54 14 36V15L40 5Z" stroke="currentColor" stroke-width="2.2"/><path d="M26 32 35 41 54 23" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="40" r="31" stroke="currentColor" stroke-opacity=".18" stroke-dasharray="2 6"/></svg></div>
+      <div class="splash-title">CYBER<span>CASE</span><i>®</i></div>
+      <div class="splash-sub">SMART DIGITAL FRAUD EVIDENCE & RESPONSE</div>
+      <div class="splash-line"><span id="splash-line-fill"></span></div>
+      <div class="splash-caption"><span id="splash-caption">Preparing secure workspace</span><span class="mono" id="splash-percent">00%</span></div>
+    </div>
+    <div class="splash-bottom"><span>COLLECT · CONNECT · CLARIFY</span><button id="skip-splash" class="text-button">SKIP INTRO ↗</button></div>
+  </section>
+
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a href="#overview" class="brand-lockup" aria-label="CyberCase home">
+        <span class="brand-mark"><svg viewBox="0 0 80 80" fill="none"><path d="M40 5 66 15v21c0 18-11 29-26 39C25 65 14 54 14 36V15L40 5Z" stroke="currentColor" stroke-width="3"/><path d="M26 32 35 41 54 23" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-word">cyber<span>case</span><small>EVIDENCE INTELLIGENCE</small></span>
+      </a>
+      <div class="workspace-chip"><span class="live-dot"></span><span>LOCAL WORKSPACE</span><span class="chip-arrow">↗</span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <button class="nav-item active" data-view="workspace"><span class="nav-icon">◈</span><span>Evidence workspace</span><span class="nav-index">01</span></button>
+        <button class="nav-item" data-view="vault"><span class="nav-icon">▤</span><span>Case vault</span><span class="nav-count" id="vault-count">0</span></button>
+        <button class="nav-item" data-view="how"><span class="nav-icon">⌘</span><span>How it works</span></button>
+      </nav>
+      <div class="nav-label nav-label-spaced">INTELLIGENCE PIPELINE</div>
+      <button class="pipeline-item" data-scroll="module-one"><span class="pipeline-num">01</span><span><b>Evidence analysis</b><small>Extract · connect · timeline</small></span><i>↗</i></button>
+      <button class="pipeline-item" data-scroll="module-two"><span class="pipeline-num">02</span><span><b>Case preparation</b><small>Report · verify · respond</small></span><i>↗</i></button>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-security"><div class="security-orbit"><span>✳</span></div><div><b>Privacy-first by design</b><small>Evidence is processed in memory.</small></div></div>
+      <div class="sidebar-footer"><span class="status-led"></span><span id="sidebar-status">GEMINI NOT CONNECTED</span><span class="mono version">v1.0.0</span></div>
+    </aside>
+
+    <main class="main-area" id="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open navigation">☰</button>
+        <div class="breadcrumbs"><span class="crumb-dim">CYBERCASE</span><span class="crumb-slash">/</span><span id="crumb-current">WORKSPACE</span></div>
+        <div class="topbar-actions">
+          <div class="api-pill" id="api-pill"><span class="api-dot"></span><span id="api-status-label">GEMINI · NOT CONNECTED</span></div>
+          <button class="icon-button" id="help-button" title="Privacy and help" aria-label="Privacy and help">?</button>
+          <div class="avatar">CC</div>
+        </div>
+      </header>
+
+      <section class="view active-view" id="workspace-view">
+        <div class="hero-block reveal">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-spark">✳</span> SMART DIGITAL FRAUD RESPONSE <span class="eyebrow-rule"></span><span class="eyebrow-id mono">SYS / 001</span></div>
+            <h1>Every digital clue<br/>has a <span class="gradient-text">next step.</span></h1>
+            <p class="hero-description">Bring messages, receipts and screenshots together. CyberCase helps turn scattered details into a timeline, careful findings and a case-ready report.</p>
+            <div class="hero-actions"><button class="primary-button" id="focus-upload"><span>＋</span> Build a case file <i>↗</i></button><button class="secondary-button" id="load-sample"><span class="play-icon">▷</span> Explore a sample case</button></div>
+            <div class="trust-row"><span><i class="trust-check">✓</i> Evidence-linked findings</span><span><i class="trust-check">✓</i> No server-side file storage</span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-top mono"><span>CASE / EVIDENCE MAP</span><span>01 — 02</span></div>
+            <div class="radar-grid"></div><div class="radar-rings ring-1"></div><div class="radar-rings ring-2"></div><div class="radar-rings ring-3"></div>
+            <div class="radar-core"><div class="core-inner"><svg viewBox="0 0 80 80" fill="none"><path d="M40 7 65 16v20c0 18-11 29-25 37C26 65 15 54 15 36V16L40 7Z" stroke="currentColor" stroke-width="2.2"/><path d="M26 32 35 41 54 23" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            <div class="radar-node node-a"><span class="node-icon">▤</span><span class="node-label">EVIDENCE</span></div><div class="radar-node node-b"><span class="node-icon">⌁</span><span class="node-label">TIMELINE</span></div><div class="radar-node node-c"><span class="node-icon">✳</span><span class="node-label">INSIGHT</span></div>
+            <div class="art-readout readout-a"><small>AI ANALYSIS LAYER</small><b>Ready to connect</b><span>Files · messages · receipts</span></div><div class="art-readout readout-b"><span class="readout-bar"></span><small>THE OUTCOME</small><b>Evidence → Clarity</b></div>
+            <div class="art-corner corner-tl"></div><div class="art-corner corner-br"></div><div class="art-bottom mono"><span>CASE 001</span><span class="art-coords-dot"></span><span>PRIVATE WORKSPACE</span></div>
+          </div>
+        </div>
+
+        <div class="stat-strip reveal">
+          <div class="stat-cell"><span class="stat-label">MODULES</span><strong>02</strong><small>Focused workflow</small></div>
+          <div class="stat-cell"><span class="stat-label">SUPPORTED FILES</span><strong>09<span class="stat-unit"> formats</span></strong><small>PDF · image · text · email</small></div>
+          <div class="stat-cell"><span class="stat-label">AI CONNECTION</span><strong class="stat-mode" id="stat-mode">NOT CONNECTED<span class="mini-led"></span></strong><small id="stat-mode-small">Add a Gemini key to analyze</small></div>
+          <div class="stat-cell stat-note"><span class="stat-label">BUILT FOR PEOPLE</span><div class="stat-note-main">No accusations.<br/><span>Only organized evidence.</span></div></div>
+        </div>
+
+        <section class="workspace-section reveal" id="evidence-studio">
+          <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-spark">✳</span> CASE WORKBENCH</div><h2>Let’s make the details make sense<span class="heading-period">.</span></h2><p>Add evidence one piece at a time. Each file opens into your case trail as it arrives.</p></div><div class="section-right"><span class="step-chip"><b>01</b> COLLECT</span><span class="step-line"></span><span class="step-chip"><b>02</b> CONNECT</span><span class="step-line"></span><span class="step-chip"><b>03</b> PREPARE</span></div></div>
+          <div class="workspace-grid">
+            <div class="evidence-panel panel-surface" id="drop-panel">
+              <div class="panel-head"><div class="panel-title"><span class="panel-icon">↧</span><div><h3>Evidence intake</h3><small>Start with a file, then add the context</small></div></div><span class="mono panel-counter" id="file-count">0 / 5 FILES</span></div>
+              <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose evidence files"><input type="file" id="evidence-input" hidden multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.md,.eml,.csv"/><div class="drop-orbit"><svg viewBox="0 0 48 48" fill="none"><path d="M24 31V9m0 0-8 8m8-8 8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 27v9a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="drop-title">Drop a file to begin the story</div><div class="drop-sub">or <span>choose it from your device</span></div><div class="drop-formats"><span>PDF</span><span>JPG / PNG</span><span>TXT</span><span>EML</span><span>CSV</span></div><div class="drop-limit mono">UP TO 5 FILES · 12 MB EACH · 12 MB TOTAL</div></div>
+              <div class="file-list" id="file-list"></div>
+              <div class="field-label-row"><label for="incident-type">INCIDENT CATEGORY</label><span class="field-optional">OPTIONAL</span></div>
+              <select id="incident-type" class="field-control"><option value="Not specified">Select incident category</option><option>Phishing / suspicious link</option><option>Fake job or recruitment offer</option><option>Payment / transaction dispute</option><option>Online shopping scam</option><option>Impersonation / account misuse</option><option>Investment / trading scam</option><option>Other digital incident</option></select>
+              <div class="field-label-row description-label"><label for="incident-description">WHAT HAPPENED?</label><span class="field-optional">OPTIONAL</span></div>
+              <textarea id="incident-description" class="field-control text-area" rows="4" placeholder="Add context in your own words. Example: I received a recruitment message, paid a registration fee, and the contact stopped replying…"></textarea>
+              <div class="privacy-inline"><span class="privacy-lock">⌑</span><span><b>Privacy note</b> Files are processed in memory and are not saved on this server. When Gemini is connected, uploaded evidence is sent to Google for analysis. Use fictional or redacted files in presentations.</span></div>
+              <div class="form-footer"><div class="input-footnote"><span class="secure-dot"></span><span>Encrypted in transit by HTTPS when deployed securely</span></div><button id="analyze-button" class="primary-button analyze-button"><span class="analyze-glyph">✳</span><span id="analyze-label">Analyze evidence</span><i>↗</i></button></div>
+              <div class="error-banner" id="error-banner" role="alert" hidden></div>
+            </div>
+
+            <div class="results-panel panel-surface" id="results-panel">
+              <div class="panel-head results-head"><div class="panel-title"><span class="panel-icon ai-icon">✳</span><div><h3>Case intelligence</h3><small id="results-subtitle">Your findings will appear here</small></div></div><span class="analysis-badge" id="result-badge"><span class="analysis-badge-dot"></span> STANDING BY</span></div>
+              <div class="empty-state" id="empty-state"><div class="empty-graphic"><div class="empty-circle empty-circle-outer"></div><div class="empty-circle empty-circle-mid"></div><div class="empty-circle empty-circle-inner"><span>✳</span></div><div class="empty-cross cross-a"></div><div class="empty-cross cross-b"></div><span class="empty-point point-a"></span><span class="empty-point point-b"></span><span class="empty-point point-c"></span></div><h3>Clarity begins with evidence.</h3><p>Upload a file or describe an incident to generate a structured timeline, key observations and recommended next steps.</p><div class="empty-features"><span>01 / TIMELINE</span><span>02 / ENTITIES</span><span>03 / FINDINGS</span></div><button class="ghost-button" id="empty-sample">Explore a sample case <span>↗</span></button></div>
+              <div class="loading-state" id="loading-state" hidden><div class="loading-radar"><div class="loading-sweep"></div><div class="loading-center">✳</div></div><div class="loading-title">Connecting the evidence<span class="loading-dots">...</span></div><p id="loading-copy">Extracting details and establishing a timeline.</p><div class="loading-steps"><span class="loading-step done">01 <i>Input secured</i></span><span class="loading-step active">02 <i>Analyzing</i></span><span class="loading-step">03 <i>Building case</i></span></div></div>
+              <div class="analysis-results" id="analysis-results" hidden>
+                <div class="result-overview"><div><span class="result-kicker">CASE OVERVIEW</span><h3 id="result-title">Incident overview</h3><p id="result-summary"></p></div><div class="risk-orb" id="risk-orb"><span id="risk-score">—</span><small>REVIEW</small></div></div>
+                <div class="result-meta"><span id="result-type">Incident · Unclassified</span><span id="result-confidence">Confidence · Medium</span><span id="result-model">MODEL · GEMINI</span></div>
+                <div class="result-tabs"><button class="result-tab active" data-tab="timeline">Timeline <span id="timeline-count">0</span></button><button class="result-tab" data-tab="findings">Findings <span id="finding-count">0</span></button><button class="result-tab" data-tab="entities">Entities <span id="entity-count">0</span></button><button class="result-tab" data-tab="nextsteps">Next steps</button></div>
+                <div class="result-tab-panel" id="result-tab-panel"></div>
+                <div class="result-actions"><button class="secondary-button small-button" id="save-case">＋ Save to local vault</button><button class="primary-button small-button" id="make-report">Generate case report <i>↗</i></button></div>
+                <div class="result-disclaimer"><span>ⓘ</span><span id="result-disclaimer-copy">AI-assisted organization only. Verify every detail against original evidence. This analysis does not establish authenticity, guilt or legal conclusions.</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="modules-section reveal" aria-label="Two project modules">
+          <div class="section-heading compact-heading"><div><div class="eyebrow">THE CYBERCASE METHOD</div><h2>Two modules. One clearer picture<span class="heading-period">.</span></h2></div><span class="module-count mono">02 / CORE SYSTEMS</span></div>
+          <div class="module-grid">
+            <article class="module-card" id="module-one"><div class="module-card-top"><span class="module-number">01</span><span class="module-icon">⌁</span><span class="module-card-arrow">↗</span></div><div class="module-micro mono">EXTRACT · CONNECT · ORDER</div><h3>Digital Evidence Analysis<br/>& Timeline Builder</h3><p>Convert scattered documents, messages, images and receipts into a connected view of events, extracted entities and evidence-linked observations.</p><div class="module-tags"><span>OCR / DOCUMENT AI</span><span>TIMELINE</span><span>SHA-256</span></div><div class="module-progress"><span></span></div></article>
+            <article class="module-card module-card-alt" id="module-two"><div class="module-card-top"><span class="module-number">02</span><span class="module-icon">↗</span><span class="module-card-arrow">↗</span></div><div class="module-micro mono">VERIFY · PREPARE · RESPOND</div><h3>Intelligent Case Preparation<br/>& Reporting Assistant</h3><p>Identify missing details, prepare a neutral case summary, assemble an evidence index and guide the user toward the appropriate official reporting channel.</p><div class="module-tags"><span>GEMINI API</span><span>REPORT GENERATION</span><span>AUDIT TRAIL</span></div><div class="module-progress"><span></span></div></article>
+          </div>
+        </section>
+        <footer class="page-footer"><span>CYBERCASE <b>©</b> 2026 · A STUDENT INTERNET PROGRAMMING PROJECT</span><span><i class="footer-dot"></i> BUILT FOR CLARITY, NOT ACCUSATION</span></footer>
+      </section>
+
+      <section class="view secondary-view" id="vault-view" hidden>
+        <div class="secondary-hero"><div class="eyebrow">LOCAL CASE STORAGE / 02</div><h1>Your case <span class="gradient-text">vault.</span></h1><p>Cases are saved only in this browser when you explicitly choose to save them. Evidence files are not stored here.</p></div>
+        <div class="vault-toolbar"><div class="vault-search-wrap"><span>⌕</span><input id="vault-search" placeholder="Search saved cases..." /></div><span class="mono" id="vault-summary">0 SAVED CASES</span></div>
+        <div class="vault-list" id="vault-list"></div>
+        <footer class="page-footer"><span>LOCAL-ONLY METADATA STORAGE</span><span>RAW EVIDENCE IS NOT SAVED</span></footer>
+      </section>
+
+      <section class="view secondary-view" id="how-view" hidden>
+        <div class="secondary-hero"><div class="eyebrow">SYSTEM NOTES / 03</div><h1>Evidence first.<br/><span class="gradient-text">Assumptions last.</span></h1><p>CyberCase helps organize digital incident materials. It is designed to make information easier to review, not to decide who's guilty.</p></div>
+        <div class="how-grid"><article class="how-card"><span>01 / INPUT</span><h3>Bring your evidence</h3><p>Upload up to five files or describe the situation. Supported inputs include PDF, images, plain text, email text and CSV.</p></article><article class="how-card"><span>02 / ANALYSIS</span><h3>Connect the details</h3><p>Gemini helps extract visible facts and infer a draft timeline. The app calculates a SHA-256 digest for each uploaded file to help identify the exact copy analyzed.</p></article><article class="how-card"><span>03 / REPORT</span><h3>Prepare the next step</h3><p>Review missing information, generate a neutral report, export it and use the official reporting link shown with your case guidance.</p></article><article class="how-card caution-card"><span>DATA & SAFETY</span><h3>Know the limits</h3><p>Hashes help detect file changes; they do not prove that the original file was authentic. AI may make mistakes. Verify names, dates, amounts and claims against originals.</p></article></div>
+        <div class="official-note"><div class="official-note-icon">↗</div><div><b>For India: National Cyber Crime Reporting Portal</b><p>For cybercrime reporting, visit the official government portal. For an urgent financial cyber-fraud situation, contact your bank and the relevant official helpline promptly.</p><a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">Open cybercrime.gov.in ↗</a></div></div>
+        <footer class="page-footer"><span>CYBERCASE / HELP CENTER</span><span>HUMAN REVIEW REQUIRED</span></footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="report-backdrop" id="report-backdrop" hidden><section class="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title"><div class="report-modal-head"><div><div class="eyebrow">MODULE 02 / CASE PREPARATION</div><h2 id="report-modal-title">Case report</h2></div><button class="modal-close" id="report-close" aria-label="Close report">×</button></div><div class="report-notice"><span>ⓘ</span> Review every field against the original evidence before sharing this document.</div><pre class="report-content" id="report-content"></pre><div class="report-actions"><button class="secondary-button" id="report-print">Print / Save PDF</button><button class="primary-button" id="report-download">Download report <i>↗</i></button></div></section></div>
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+  <div class="modal-backdrop" id="modal-backdrop" hidden><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="Close dialog">×</button><div class="modal-mark">✳</div><div class="eyebrow">CYBERCASE / PRIVACY & SAFETY</div><h2 id="modal-title">Your evidence stays yours.</h2><p>Files are handled in server memory and are not written to this application's disk. When Gemini is configured, uploaded evidence and the incident description are sent to Google's Gemini API to generate the requested analysis. Avoid uploading material you are not authorized to share. Saved cases contain analysis metadata only and stay in this browser's local storage.</p><div class="modal-list"><span>✓ No raw files saved by this app</span><span>✓ SHA-256 file fingerprint shown for reference</span><span>✓ AI findings require human verification</span></div><button class="primary-button modal-done" id="modal-done">Understood <i>↗</i></button></section></div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
